@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <div class="header">
+      <a href="/logout"><button>Logout</button></a>
+      <h1>Welcome, {{user.name}}!</h1>
+    </div>
+    <div class="top">
+      <h2>Your Wish List</h2>
+        <table>
+          <tr>
+            <th>Item</th>
+            <th>Added By</th>
+            <th>Date Added</th>
+            <th>Actions</th>
+          </tr>
+          {% for mywish in mine.all %}
+          <tr>
+            <td><a href="/wish_items/{{mywish.id}}">{{mywish.item}}</a></td>
+            <td>{{mywish.user_wish.name}}</td>
+            <td>{{mywish.user_wish.created_at}}</td>
+            <td><a href="/remove/{{mywish.id}}">Remove from my Wishlist<a></td>
+              {% if mywish.user_wish.id == user.id %}
+              <td><a href="/delete/{{mywish.id}}">Delete<a></td>
+              {% endif %}
+          <tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="bottom">
+      <h2>Other User's Wish List:</h2>
+      <table>
+        <tr>
+          <th>Item</th>
+          <th>Added By</th>
+          <th>Date Added</th>
+          <th>Action</th>
+        </tr>
+        {% for others in other_wishes.all %}
+        <tr>
+          <td><a href="/wish_items/{{others.id}}">{{others.item}}</a></td>
+          <td>{{others.user_wish.name}}</td>
+          <td>{{others.user_wish.date_hired}}</td>
+
+          <td><a href="/join/{{others.id}}">Add to my Wishlist</a></td>
+        </tr>
+        {% endfor %}
+      </table>
+      <a href="/add"><button>Add Item</button></a>
+    </div>
+
+
+  </body>
+
+</html>

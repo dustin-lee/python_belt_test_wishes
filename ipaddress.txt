@@ -1,0 +1,6 @@
+Public DNS
+ec2-54-149-112-59.us-west-2.compute.amazonaws.com
+
+
+Public IP
+54.149.112.59
